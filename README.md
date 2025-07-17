@@ -95,3 +95,47 @@ The model weights are released under the [LICENSE](LICENSE) terms.
 Our codebase is built using multiple opensource contributions, please see [Acknowledgements](ACKNOWLEDGEMENTS.md) for more details.
 
 Please check the paper for a complete list of references and datasets used in this work.
+
+## Running the FastAPI API
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Start the API server:
+   ```bash
+   uvicorn api:app --reload
+   ```
+   The server will run at http://localhost:8000
+
+3. Make a sample POST request to `/estimate_size`:
+   ```json
+   {
+     "image_path": "/path/to/image.jpg",
+     "coords_refobj": [[x1, y1], [x2, y2], [x3, y3], [x4, y4]],
+     "coords_targetobj": [[x1, y1], [x2, y2], [x3, y3], [x4, y4]],
+     "ref_obj_w_cm": 21.0,
+     "ref_obj_h_cm": 29.7
+   }
+   ```
+   You can use `curl` or Postman to test:
+   ```bash
+   curl -X POST "http://localhost:8000/estimate_size" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "image_path": "/path/to/image.jpg",
+       "coords_refobj": [[399, 302], [556, 329], [539, 403], [372, 371]],
+       "coords_targetobj": [[210, 472], [777, 497], [850, 990], [88, 948]],
+       "ref_obj_w_cm": 21.0,
+       "ref_obj_h_cm": 29.7
+     }'
+   ```
+
+4. The response will be:
+   ```json
+   {
+     "target_width_cm": ...,
+     "target_height_cm": ...
+   }
+   ```
