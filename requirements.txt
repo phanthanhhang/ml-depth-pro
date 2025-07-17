@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+numpy
+Pillow
+torch
+matplotlib
+# Add your depth_pro and any other dependencies as needed 

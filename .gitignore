@@ -4,3 +4,4 @@ depth_folder/
 ssl.sh
 *.conf
 .env
+checkpoints/
