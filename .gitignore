@@ -3,3 +3,4 @@ depth_folder/
 *.pem
 ssl.sh
 *.conf
+.env
